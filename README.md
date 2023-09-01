@@ -1,11 +1,11 @@
 
 # What is this Project
-> :warning: **DO NO TAKE THIS AS A SERIUS IMPLEMENTATION**
+> :warning: **DO NO TAKE THIS AS A SERIUS IMPLEMENTATION**: This is not how you are supposed to implement theme system in an web page.
 
 This project was created for learning purposes, focusing on the Client and Server side cookies management.
 
 [js-cookie](https://www.npmjs.com/package/js-cookie) was used on the Client side to handle the cookies. However, you may see that the page does not change the theme when you click the radio button, this is because there is no state on the app that tells the componens
-to update the UI. **You must reload the page to see it**
+to update the UI. **You must reload the page to see it**.
 
 
 
