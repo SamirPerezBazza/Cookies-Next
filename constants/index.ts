@@ -1,0 +1,1 @@
+export const VALID_THEMES: string[] = ["light", "dark", "custom"];

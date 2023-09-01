@@ -1,13 +1,24 @@
 import React, { ChangeEvent, useState } from 'react';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { Layout } from '@/components/layouts';
 import { Card, CardContent, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import Cookies from 'js-cookie';
+import { VALID_THEMES } from '@/constants';
 
-const ThemeChangerPage = () => {
+interface Props {
+	theme: 'light' | 'dark' | 'custom'
+}
 
-	const [currentTheme, setCurrentTheme] = useState("light")
+const ThemeChangerPage: React.FC<Props> = ({theme}) => { 		
+
+	const [currentTheme, setCurrentTheme] = useState<string>(theme);
 
 	const handleThemeChange = (event: ChangeEvent<HTMLInputElement>) => {
-		setCurrentTheme(event.target.value);
+		const selectedTheme = event.target.value;
+
+		setCurrentTheme(selectedTheme);
+
+		Cookies.set("theme", selectedTheme);
 	}
 
 	return (
@@ -34,5 +45,16 @@ const ThemeChangerPage = () => {
 		</Layout>
 	);
 };
+
+export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
+	
+	const { theme = 'light' } = ctx.req.cookies;
+
+	return {
+		props: {
+			theme: VALID_THEMES.find(option=>option === theme) ?? "light",		
+		}
+	}
+}
 
 export default ThemeChangerPage;
