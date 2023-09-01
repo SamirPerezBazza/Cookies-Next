@@ -5,7 +5,9 @@ import { Navbar } from '../ui';
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<>
-			<Head />
+			<Head>
+				
+			</Head>
 			<nav>
 				<Navbar />
 			</nav>
